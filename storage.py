@@ -3,6 +3,7 @@ import pickle
 import time
 import random
 from cryptography.fernet import Fernet
+import getpass
 
 def write_key():
     key = Fernet.generate_key()
@@ -86,8 +87,8 @@ def writehelp():
     passedpass()
 
 def new():
-    haslo = input("[*] Type new password: ")
-    maslo = input("[*] Type new password again: ")
+    haslo = getpass.getpass("[*] Type new password: ")
+    maslo = getpass.getpass("[*] Type new password again: ")
     if str(haslo) == str(maslo):
         h = ""
         for i in haslo:
@@ -161,7 +162,7 @@ elif(file.read() == key):
     new()
 else:
     file.close()
-    check = input("[*] Type your password: ")
+    check = getpass.getpass("[*] Type your password: ")
     with open("password.txt", "rb") as plik4:
         hmmm = pickle.load(plik4)
     j = bytearray.fromhex(hmmm).decode()
